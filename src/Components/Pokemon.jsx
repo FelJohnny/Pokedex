@@ -1,19 +1,23 @@
-import React, { useCallback, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 
-const Pokemon = ({pokemon})=>{
+const Pokemon = ({pokemon, setLoading, loading})=>{
     const [dados, setDados] =useState(null);
 
     useEffect(()=>{
         async function puxaDados(){
            const dado = fetch(pokemon.url)
            const resposta = await(await dado).json()
+           setTimeout(()=>{
+
                setDados(resposta)
+               setLoading(false)
+            },resposta)
             
         }
         puxaDados()
     },[])
     
-if(dados)
+if(dados&& loading!==true)
 return(
     <>
         <img src={dados.sprites.front_default} alt="Pokemon" />
