@@ -9,7 +9,7 @@ const Pokedex = ()=>{
     const [loading, setLoading] = useState(false)
 
     useEffect(()=>{
-        useCallback
+        
         async function pokedexAPI(){
             
             setLoading(true)
