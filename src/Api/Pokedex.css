@@ -1,0 +1,9 @@
+h1{
+    text-align: center;
+}
+
+.teste{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}

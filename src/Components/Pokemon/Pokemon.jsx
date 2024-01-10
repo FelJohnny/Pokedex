@@ -1,7 +1,7 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import './Pokemon.css'
 
-const Pokemon = ({pokemon, setLoading, loading})=>{
+const Pokemon = ({pokemon, setLoading, loading, keey})=>{
     const [dados, setDados] =useState(null);
 
     useEffect(()=>{
@@ -9,7 +9,7 @@ const Pokemon = ({pokemon, setLoading, loading})=>{
            const dado = fetch(pokemon.url)
            const resposta = await(await dado).json()
            setTimeout(()=>{
-
+                console.log(resposta)
                setDados(resposta)
                setLoading(false)
             },resposta)
@@ -17,19 +17,25 @@ const Pokemon = ({pokemon, setLoading, loading})=>{
         }
         puxaDados()
     },[])
+
+    const divSelecionada = useRef("");
+    function apaga(){
+        const elemento =divSelecionada.current
+        console.log(elemento)
+        elemento.style.display ='none'
+    }   
     
 if(dados&& loading!==true)
 return(
-    <div className="container">
-
-        <div>
+    <div className="container" ref={divSelecionada}>
+            <p>{keey}</p>
             <img src={dados.sprites.front_default} alt="Pokemon" />
             <img src={dados.sprites.back_default} alt="Pokemon" />
             <p><b>Nome:</b> {dados.name}</p>
             <p><b>Base de Experiencia: </b>{dados.base_experience}</p>
             <p><b>Tipo:</b> {dados.types.map(tipo=> tipo.type.name+' ' )}</p>
-        </div>
-        
+
+            <button onClick={apaga}>Apagar</button>
     </div>
 )
 

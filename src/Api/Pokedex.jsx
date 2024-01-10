@@ -14,24 +14,27 @@ const Pokedex = ()=>{
             
             setLoading(true)
             const api = fetch(`https://pokeapi.co/api/v2/pokemon?offset=0&limit=400/`)
-            const resposta = await (await api).json();  
+            const resposta = await (await api).json();
+            console.log(resposta.results)
             setPokemon(resposta.results)                
         }
         pokedexAPI()
     },[])
-        
+
+
     return(
-        <div >
+        <>
         <h1>Pokemon</h1>
+        <div className="teste">
             {loading ?<h3>Carregando...</h3>:''}
             {pokemons.map((pokemon, index) =>(
                 <div key={index}>
-                    <Pokemon  loading={loading} setLoading={setLoading} pokemon={pokemon}/>
-                    
+                    <Pokemon  loading={loading} setLoading={setLoading} pokemon={pokemon} keey={index}/>
                 </div>
             ))}
         
         </div>
+        </>
         )
 }
 
