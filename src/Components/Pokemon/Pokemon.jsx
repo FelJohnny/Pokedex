@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import './Pokemon.css'
 
-const Pokemon = ({pokemon, setLoading, loading, keey, pesquisa})=>{
+const Pokemon = ({pokemon, setLoading, loading, keey})=>{
     const [dados, setDados] =useState(null);
 
     useEffect(()=>{
@@ -15,7 +15,7 @@ const Pokemon = ({pokemon, setLoading, loading, keey, pesquisa})=>{
             
         }
         puxaDados()
-    },[pesquisa, dados])
+    },[dados])
 
 
     const divSelecionada = useRef("");
