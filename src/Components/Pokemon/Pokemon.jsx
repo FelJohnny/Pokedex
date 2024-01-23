@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import './Pokemon.css'
 
-const Pokemon = ({pokemon, setLoading, loading, keey})=>{
+const Pokemon = ({pokemon, setLoading, loading, keey, pesquisa})=>{
     const [dados, setDados] =useState(null);
 
     useEffect(()=>{
@@ -9,19 +9,18 @@ const Pokemon = ({pokemon, setLoading, loading, keey})=>{
            const dado = fetch(pokemon.url)
            const resposta = await(await dado).json()
            setTimeout(()=>{
-                console.log(resposta)
                setDados(resposta)
                setLoading(false)
             },resposta)
             
         }
         puxaDados()
-    },[])
+    },[pesquisa, dados])
+
 
     const divSelecionada = useRef("");
     function apaga(){
         const elemento =divSelecionada.current
-        console.log(elemento)
         elemento.style.display ='none'
     }   
     
